@@ -1,7 +1,10 @@
 ManifestFileVersion: 0
-CRC: 4239350664
+CRC: 3277926446
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: ui/hero/prefabs/herocube
+      Dependencies: {}
+    Info_1:
+      Name: ui/hero/textures/bg
       Dependencies: {}
