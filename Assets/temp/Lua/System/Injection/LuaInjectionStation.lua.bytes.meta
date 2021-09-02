@@ -1,0 +1,7 @@
+fileFormatVersion: 2
+guid: ec2ca2c61bb45b04199c6c07047ffe5e
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: lua/system/injection/luainjectionstation.lua
+  assetBundleVariant: 

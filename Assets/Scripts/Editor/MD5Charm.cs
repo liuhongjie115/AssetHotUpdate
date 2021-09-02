@@ -80,6 +80,7 @@ namespace Asset.Scripts.Util
                     MD5Message mD5Message = new MD5Message();
                     mD5Message.file = fileName;
                     mD5Message.md5 = SystemConfig.GetMD5HashFromFile(contents[i]);
+
                     FileInfo fileInfo = new FileInfo(contents[i]);
                     mD5Message.fileLength = (fileInfo.Length / 1024f).ToString("0.0");
                     _file.files.Add(mD5Message);

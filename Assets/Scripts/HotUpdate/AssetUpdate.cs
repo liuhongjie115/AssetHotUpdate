@@ -1,4 +1,5 @@
 using Asset.Scripts.Util;
+using Assets.Scripts.Core;
 using Assets.Scripts.ResLoader.VO;
 using System;
 using System.Collections;
@@ -9,17 +10,24 @@ using UnityEngine.Networking;
 
 namespace Assets.Scripts.HotUpdate
 {
-
-
     public class AssetUpdate
     {
         public static FileMd5 remoteFileMd5;
         public static List<WebLoaderVO> failLoadVos = new List<WebLoaderVO>();
+        private static Action<bool> _updateComplete;
 
-        public static void StartUpdate()
+        public static void StartUpdate(Action<bool> updateComplete =null)
         {
-            failLoadVos.Clear();
-            GameStart.Instance.StartCoroutine(VersionUpdate());
+            if(SystemConfig.isLoadAbRes)
+            {
+                _updateComplete = updateComplete;
+                failLoadVos.Clear();
+                GameStart.Instance.StartCoroutine(VersionUpdate());
+            }
+            else
+            {
+                updateComplete?.Invoke(true);
+            }
         }
 
         private static IEnumerator VersionUpdate()
@@ -58,6 +66,10 @@ namespace Assets.Scripts.HotUpdate
                     Debug.Log("开始尝试更新");
                     GameStart.Instance.StartCoroutine(DownLoadBundleFiles(webLoaderVOs,AllResLoaderFinish));
                 }
+                else
+                {
+                    _updateComplete?.Invoke(true);
+                }
             }
         }
 
@@ -73,7 +85,6 @@ namespace Assets.Scripts.HotUpdate
                 var headRequest = UnityWebRequest.Head(webLoaderVO.url);
                 yield return headRequest.SendWebRequest();
                 long totalLength = long.Parse(headRequest.GetResponseHeader("Content-Length"));   //获得包头长度
-                webLoaderVO.TotalSize = totalLength;
                 Debug.Log(webLoaderVO.url + "长度：" + totalLength);
                 CreateFile(webLoaderVO.tempFileName);
                 using (FileStream fs = new FileStream(webLoaderVO.tempFileName, FileMode.OpenOrCreate, FileAccess.Write))
@@ -85,23 +96,23 @@ namespace Assets.Scripts.HotUpdate
 
                         UnityWebRequest request = UnityWebRequest.Get(webLoaderVO.url);
                         request.SetRequestHeader("Range", "bytes=" + fileLength + "-" + totalLength);  //数据范围设置
-                        request.SendWebRequest();
+                        yield return request.SendWebRequest();
 
                         int index = 0;
-                        while(!request.isDone)
+                        if(request.isDone)
                         {
-                            byte[] buff = request.downloadHandler.data;
-                            if(buff!=null)
+                            if(request.downloadHandler.data != null)
                             {
-                                int length = buff.Length - index;
+                                webLoaderVO.TotalSize = request.downloadHandler.data.Length;
+                                yield return null;
+                                int length = request.downloadHandler.data.Length - index;
                                 Debug.Log("从：" + index + " 写入长度：" + length);
-                                fs.Write(buff, index, length);
+                                fs.Write(request.downloadHandler.data, index, length);
                                 index += length;
                                 fileLength += length;
-                                webLoaderVO.downFileLgth += buff.Length;
+                                webLoaderVO.downFileLgth += request.downloadHandler.data.Length;
                                 Debug.Log("下载总量：" + webLoaderVO.downFileLgth);
                             }
-                            yield return null;
                         }
                         num++;
                         fs.Close();
@@ -118,7 +129,7 @@ namespace Assets.Scripts.HotUpdate
 
         private static void DeleteOtherBundles(FileMd5 fileMd5)
         {
-            Debug.LogError("---------开始删除----------");
+            ALog.Info("---------开始删除----------");
             if (!File.Exists(SystemConfig.JSON_PATH))
             {
                 DeleteFolder(SystemConfig.PACK_OUT_RES_PATH);
@@ -150,7 +161,7 @@ namespace Assets.Scripts.HotUpdate
                     }
                 }
             }
-            Debug.LogError("---------结束删除----------");
+            ALog.Info("---------结束删除----------");
         }
 
         private static bool FindNameInFileMD5(FileMd5 fileMd5,string name)
@@ -215,6 +226,7 @@ namespace Assets.Scripts.HotUpdate
                     File.WriteAllText(SystemConfig.JSON_PATH, JsonUtility.ToJson(remoteFileMd5));
                 }
             }
+            _updateComplete?.Invoke(success);
         }
 
         private static void DeleteFolder(string dir)

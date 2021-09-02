@@ -2,12 +2,14 @@
 using System.Collections;
 using UnityEditor;
 using System.IO;
+using Asset.Scripts.Util;
 
 namespace Assets.Scripts.Editor
 {
     public class DoAssetbundle
     {
-
+        //public static string abResPath = Application.dataPath + "/ABres/";
+        //public static string localRes = Application.dataPath + "/OriginalResource/";
         /// <summary>
         /// 查看所有的Assetbundle名称（设置Assetbundle Name的对象）
         /// </summary>
@@ -26,7 +28,7 @@ namespace Assets.Scripts.Editor
         static void CreateAllAssetBundles()
         {
             //打包资源的路径，打包在对应平台的文件夹下
-            string targetPath = Asset.Scripts.Util.SystemConfig.abResPath;
+            string targetPath = SystemConfig.abResPath;
             if (!Directory.Exists(targetPath))
             {
                 Directory.CreateDirectory(targetPath);
@@ -45,9 +47,10 @@ namespace Assets.Scripts.Editor
         [MenuItem("AssetBundle/Set Main AssetbundleName")]
         public static void SetMainAssetBundleName()
         {
-            string fullPath = Asset.Scripts.Util.SystemConfig.localRes;    //将Assets/OriginalResource/文件夹下的所有预设进行打包
+            string fullPath =SystemConfig.localRes;    //将Assets/OriginalResource/文件夹下的所有预设进行打包
 
             SetAssetBundleName(fullPath, true);
+            SetAssetBundleName(Application.dataPath + "/temp/", true);
         }
 
         /// <summary>
@@ -59,6 +62,7 @@ namespace Assets.Scripts.Editor
             string fullPath = Application.dataPath + "/OriginalResource/";    //将Assets/Prefab/文件夹下的所有预设进行打包
 
             SetAssetBundleName(fullPath, false);
+            SetAssetBundleName(Application.dataPath + "/temp/", false);
         }
 
 

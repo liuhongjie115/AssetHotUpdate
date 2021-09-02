@@ -19,9 +19,15 @@ namespace Asset.Scripts.Util
         public static string PACK_OUT_RES_PATH = Application.persistentDataPath + "/Res";    //资源真实路径
         public static string PACK_OUT_RES_DOWN_TEMP_PATH = Application.persistentDataPath + "/downTemp";   //资源缓存路径
 
+        public static string PACK_IN_RES_LUA_PATH = Application.dataPath + "/Lua";  //编辑器lua路径
+        public static string PACK_OUT_RES_LUA_PATH = Application.persistentDataPath + "/Lua";  //包外lua
+
         public static string JSON_PATH = Application.persistentDataPath + "/json/remoteJson.json";
 
         public static string RES_REMOTE_PATH = "http://127.0.0.1/AssetBundles/ABres";   //远端资源
+
+        public static bool isLoadAbRes = true;
+        public static bool isLoadAbLua = false;
 
         public static FileMd5 localFileMd5;
 

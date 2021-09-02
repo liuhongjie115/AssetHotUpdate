@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1143322700
+CRC: 2173125268
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 51d927c5158075f1f0cfb5de13adaa85
+    Hash: d1b88fbd2b5c1d76140ad80095b19e40
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ccdf19e42652927b3ca1379ec4c0235c
+    Hash: 7d1e0093d0592ca7550333bbf0c8f406
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -21,11 +21,10 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 43
   Script: {instanceID: 0}
-- Class: 48
-  Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/OriginalResource/UI/Hero/Prefabs/HeroCube.prefab
-Dependencies: []
+Dependencies:
+- E:/Project/AssetHotUpdate/Assets/ABres/ui/hero/materials/bg

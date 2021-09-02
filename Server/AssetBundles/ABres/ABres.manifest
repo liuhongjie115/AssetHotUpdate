@@ -1,10 +1,219 @@
 ManifestFileVersion: 0
-CRC: 3277926446
+CRC: 36829513
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: ui/hero/prefabs/herocube
-      Dependencies: {}
+      Dependencies:
+        Dependency_0: ui/hero/materials/bg
     Info_1:
       Name: ui/hero/textures/bg
       Dependencies: {}
+    Info_2:
+      Name: lua/event.lua
+      Dependencies: {}
+    Info_3:
+      Name: lua/list.lua
+      Dependencies: {}
+    Info_4:
+      Name: lua/ltn12.lua
+      Dependencies: {}
+    Info_5:
+      Name: lua/main.lua
+      Dependencies: {}
+    Info_6:
+      Name: lua/mime.lua
+      Dependencies: {}
+    Info_7:
+      Name: lua/slot.lua
+      Dependencies: {}
+    Info_8:
+      Name: lua/socket.lua
+      Dependencies: {}
+    Info_9:
+      Name: lua/tolua.lua
+      Dependencies: {}
+    Info_10:
+      Name: lua/typeof.lua
+      Dependencies: {}
+    Info_11:
+      Name: lua/cjson/util.lua
+      Dependencies: {}
+    Info_12:
+      Name: lua/core/luadefine.lua
+      Dependencies: {}
+    Info_13:
+      Name: lua/jit/bc.lua
+      Dependencies: {}
+    Info_14:
+      Name: lua/jit/bcsave.lua
+      Dependencies: {}
+    Info_15:
+      Name: lua/jit/dis_arm.lua
+      Dependencies: {}
+    Info_16:
+      Name: lua/jit/dis_arm64.lua
+      Dependencies: {}
+    Info_17:
+      Name: lua/jit/dis_arm64be.lua
+      Dependencies: {}
+    Info_18:
+      Name: lua/jit/dis_mips.lua
+      Dependencies: {}
+    Info_19:
+      Name: lua/jit/dis_mips64.lua
+      Dependencies: {}
+    Info_20:
+      Name: lua/jit/dis_mips64el.lua
+      Dependencies: {}
+    Info_21:
+      Name: lua/jit/dis_mipsel.lua
+      Dependencies: {}
+    Info_22:
+      Name: lua/jit/dis_ppc.lua
+      Dependencies: {}
+    Info_23:
+      Name: lua/jit/dis_x64.lua
+      Dependencies: {}
+    Info_24:
+      Name: lua/jit/dis_x86.lua
+      Dependencies: {}
+    Info_25:
+      Name: lua/jit/dump.lua
+      Dependencies: {}
+    Info_26:
+      Name: lua/jit/p.lua
+      Dependencies: {}
+    Info_27:
+      Name: lua/jit/v.lua
+      Dependencies: {}
+    Info_28:
+      Name: lua/jit/zone.lua
+      Dependencies: {}
+    Info_29:
+      Name: lua/lpeg/re.lua
+      Dependencies: {}
+    Info_30:
+      Name: lua/misc/functions.lua
+      Dependencies: {}
+    Info_31:
+      Name: lua/misc/strict.lua
+      Dependencies: {}
+    Info_32:
+      Name: lua/misc/utf8.lua
+      Dependencies: {}
+    Info_33:
+      Name: lua/protobuf/containers.lua
+      Dependencies: {}
+    Info_34:
+      Name: lua/protobuf/decoder.lua
+      Dependencies: {}
+    Info_35:
+      Name: lua/protobuf/descriptor.lua
+      Dependencies: {}
+    Info_36:
+      Name: lua/protobuf/encoder.lua
+      Dependencies: {}
+    Info_37:
+      Name: lua/protobuf/listener.lua
+      Dependencies: {}
+    Info_38:
+      Name: lua/protobuf/protobuf.lua
+      Dependencies: {}
+    Info_39:
+      Name: lua/protobuf/text_format.lua
+      Dependencies: {}
+    Info_40:
+      Name: lua/protobuf/type_checkers.lua
+      Dependencies: {}
+    Info_41:
+      Name: lua/protobuf/wire_format.lua
+      Dependencies: {}
+    Info_42:
+      Name: lua/socket/ftp.lua
+      Dependencies: {}
+    Info_43:
+      Name: lua/socket/headers.lua
+      Dependencies: {}
+    Info_44:
+      Name: lua/socket/http.lua
+      Dependencies: {}
+    Info_45:
+      Name: lua/socket/mbox.lua
+      Dependencies: {}
+    Info_46:
+      Name: lua/socket/smtp.lua
+      Dependencies: {}
+    Info_47:
+      Name: lua/socket/tp.lua
+      Dependencies: {}
+    Info_48:
+      Name: lua/socket/url.lua
+      Dependencies: {}
+    Info_49:
+      Name: lua/system/coroutine.lua
+      Dependencies: {}
+    Info_50:
+      Name: lua/system/timer.lua
+      Dependencies: {}
+    Info_51:
+      Name: lua/system/valuetype.lua
+      Dependencies: {}
+    Info_52:
+      Name: lua/system/injection/injectionbridgeinfo.lua
+      Dependencies: {}
+    Info_53:
+      Name: lua/system/injection/luainjectionbus.lua
+      Dependencies: {}
+    Info_54:
+      Name: lua/system/injection/luainjectionstation.lua
+      Dependencies: {}
+    Info_55:
+      Name: lua/system/reflection/bindingflags.lua
+      Dependencies: {}
+    Info_56:
+      Name: lua/unityengine/bounds.lua
+      Dependencies: {}
+    Info_57:
+      Name: lua/unityengine/color.lua
+      Dependencies: {}
+    Info_58:
+      Name: lua/unityengine/layermask.lua
+      Dependencies: {}
+    Info_59:
+      Name: lua/unityengine/mathf.lua
+      Dependencies: {}
+    Info_60:
+      Name: lua/unityengine/plane.lua
+      Dependencies: {}
+    Info_61:
+      Name: lua/unityengine/profiler.lua
+      Dependencies: {}
+    Info_62:
+      Name: lua/unityengine/quaternion.lua
+      Dependencies: {}
+    Info_63:
+      Name: lua/unityengine/ray.lua
+      Dependencies: {}
+    Info_64:
+      Name: lua/unityengine/raycasthit.lua
+      Dependencies: {}
+    Info_65:
+      Name: lua/unityengine/time.lua
+      Dependencies: {}
+    Info_66:
+      Name: lua/unityengine/touch.lua
+      Dependencies: {}
+    Info_67:
+      Name: lua/unityengine/vector2.lua
+      Dependencies: {}
+    Info_68:
+      Name: lua/unityengine/vector3.lua
+      Dependencies: {}
+    Info_69:
+      Name: lua/unityengine/vector4.lua
+      Dependencies: {}
+    Info_70:
+      Name: ui/hero/materials/bg
+      Dependencies:
+        Dependency_0: ui/hero/textures/bg

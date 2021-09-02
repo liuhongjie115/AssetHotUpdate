@@ -1,3 +1,7 @@
+using Asset.Scripts.Util;
+using Assets.Scripts.Core;
+using Assets.Scripts.Core.Manager;
+using LuaInterface;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +23,26 @@ public class GameStart : MonoBehaviour
         }
 #endif
         _instance = this;
-        Assets.Scripts.HotUpdate.AssetUpdate.StartUpdate();
     }
 
     private void Start()
     {
-        Assets.Scripts.HotUpdate.AssetUpdate.StartUpdate();
+        TimerManager.Init();
+        ALog.Init();
+        LuaFileUtils.Instance.beZip = SystemConfig.isLoadAbLua;
+        Assets.Scripts.HotUpdate.AssetUpdate.StartUpdate(GameUpdateAfter);
+    }
+
+    private void GameUpdateAfter(bool success)
+    {
+        if(success)
+        {
+            LuaEngine.Instance.InitEngine(this);
+        }
+    }
+
+    private void Update()
+    {
+        TimerManager.Update();
     }
 }

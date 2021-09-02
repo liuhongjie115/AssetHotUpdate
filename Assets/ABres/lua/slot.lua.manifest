@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 531949562
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3a059057bc9fe80e2f18ee4271b0dd0d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/temp/Lua/slot.lua.bytes
+Dependencies: []
