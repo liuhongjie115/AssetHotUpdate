@@ -877,6 +877,13 @@ public static class ToLuaMenu
         {
             Directory.Delete(path, true);
         }
+
+        path = Application.dataPath + "/ABres/lua";
+
+        if (Directory.Exists(path))
+        {
+            Directory.Delete(path, true);
+        }
     }
 
     [MenuItem("Lua/Gen LuaWrap + Binder", false, 4)]
@@ -983,6 +990,17 @@ public static class ToLuaMenu
     {
         ClearAllLuaFiles();
         string destDir = Application.dataPath + "/Resources" + "/Lua";
+        CopyLuaBytesFiles(LuaConst.luaDir, destDir);
+        CopyLuaBytesFiles(LuaConst.toluaDir, destDir);
+        AssetDatabase.Refresh();
+        Debug.Log("Copy lua files over");
+    }
+
+    [MenuItem("Lua/Copy Lua  files to ABres", false, 51)]
+    public static void CopyLuaFilesToABRes()
+    {
+        ClearAllLuaFiles();
+        string destDir = Application.dataPath + "/ABres" + "/lua";
         CopyLuaBytesFiles(LuaConst.luaDir, destDir);
         CopyLuaBytesFiles(LuaConst.toluaDir, destDir);
         AssetDatabase.Refresh();
@@ -1119,7 +1137,7 @@ public static class ToLuaMenu
 #if UNITY_4_6 || UNITY_4_7
         string tempDir = CreateStreamDir("Lua");
 #else
-        string tempDir = Application.dataPath + "/temp/Lua";
+        string tempDir = Application.dataPath + "/temp/lua";
 
         if (!File.Exists(tempDir))
         {
@@ -1137,10 +1155,10 @@ public static class ToLuaMenu
 		for (int i = 0; i < dirs.Count; i++)
         {
             string str = dirs[i].Remove(0, tempDir.Length);
-            BuildLuaBundle(str.Replace('\\', '/'), "Assets/temp/Lua");
+            BuildLuaBundle(str.Replace('\\', '/'), "Assets/temp/lua");
         }
 
-        BuildLuaBundle(null, "Assets/temp/Lua");
+        BuildLuaBundle(null, "Assets/temp/lua");
 
         AssetDatabase.SaveAssets();        
         string output = string.Format("{0}/{1}", Application.streamingAssetsPath, GetOS());        

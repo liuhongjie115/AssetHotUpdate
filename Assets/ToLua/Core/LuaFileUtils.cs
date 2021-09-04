@@ -173,6 +173,10 @@ namespace LuaInterface
             }
             else
             {
+                foreach(string name in Directory.GetFiles(SystemConfig.PACK_OUT_RES_PATH + "/lua","*",SearchOption.AllDirectories))
+                {
+                    Debug.Log(name);
+                }
                 string abFile = SystemConfig.PACK_OUT_RES_PATH + "/lua/" + fileName;
                 if(!abFile.EndsWith(".lua"))
                 {
@@ -182,21 +186,13 @@ namespace LuaInterface
                 {
                     fileName += ".lua";
                 }
+                abFile = abFile + ".bytes";
                 if (!File.Exists(abFile))
                 {
                     Debug.Log("不存在" + abFile);
                     return null;
                 }
-                fileName = Path.GetFileName(fileName);
-                //fileName = fileName.Substring(fileName.LastIndexOf('/'));
-                AssetBundle ab = AssetBundle.LoadFromFile(abFile);
-                TextAsset textAsset = ab.LoadAsset<TextAsset>(fileName);
-                if(textAsset==null)
-                {
-                    Debug.Log("不存在" + abFile);
-                    return null;
-                }
-                return textAsset.bytes;
+                return File.ReadAllBytes(abFile);
                 //return ReadZipFile(fileName);
             }
         }

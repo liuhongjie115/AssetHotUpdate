@@ -1,7 +1,0 @@
-fileFormatVersion: 2
-guid: 5750d9bd85d1ac14bbac822f14aa130d
-TextScriptImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: lua/jit/dis_arm64.lua
-  assetBundleVariant: 

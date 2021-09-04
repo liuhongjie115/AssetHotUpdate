@@ -1,7 +1,0 @@
-fileFormatVersion: 2
-guid: d902c17f9cf17e24ca5b72430db0103e
-TextScriptImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: lua/protobuf/decoder.lua
-  assetBundleVariant: 

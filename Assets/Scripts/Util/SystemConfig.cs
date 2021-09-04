@@ -24,10 +24,11 @@ namespace Asset.Scripts.Util
 
         public static string JSON_PATH = Application.persistentDataPath + "/json/remoteJson.json";
 
-        public static string RES_REMOTE_PATH = "http://127.0.0.1/AssetBundles/ABres";   //远端资源
+        //public static string RES_REMOTE_PATH = "http://127.0.0.1/AssetBundles/ABres";   //远端资源	
+        public static string RES_REMOTE_PATH = "http://assetbundlelhj.oss-accelerate.aliyuncs.com//AssetBundles/ABres";
 
         public static bool isLoadAbRes = true;
-        public static bool isLoadAbLua = false;
+        public static bool isLoadAbLua = true;
 
         public static FileMd5 localFileMd5;
 

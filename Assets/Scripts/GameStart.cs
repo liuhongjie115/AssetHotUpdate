@@ -4,8 +4,8 @@ using Assets.Scripts.Core.Manager;
 using LuaInterface;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class GameStart : MonoBehaviour
 {
@@ -15,13 +15,11 @@ public class GameStart : MonoBehaviour
 
     private void Awake()
     {
-#if UNITY_EDITOR
         if (!Directory.Exists(Application.persistentDataPath + "/Res"))
         {
             Debug.Log("编辑器创建");
             Directory.CreateDirectory(Application.persistentDataPath + "/Res");
         }
-#endif
         _instance = this;
     }
 
@@ -38,6 +36,11 @@ public class GameStart : MonoBehaviour
         if(success)
         {
             LuaEngine.Instance.InitEngine(this);
+            LoadPanel.Instance.gameObject.SetActive(false);
+        }
+        else
+        {
+            LoadPanel.Instance.lblProcess.text = "更新失败，请重新启动";
         }
     }
 

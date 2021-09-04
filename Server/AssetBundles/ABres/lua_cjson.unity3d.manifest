@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 1944318748
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d527663d18da7b81b270f4e8b2f8d379
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ABres/lua/cjson/util.lua.bytes
+Dependencies: []

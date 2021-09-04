@@ -16,6 +16,8 @@ namespace Assets.Scripts.HotUpdate
         public static List<WebLoaderVO> failLoadVos = new List<WebLoaderVO>();
         private static Action<bool> _updateComplete;
 
+        static long allFilesLength = 0;
+
         public static void StartUpdate(Action<bool> updateComplete =null)
         {
             if(SystemConfig.isLoadAbRes)
@@ -32,10 +34,11 @@ namespace Assets.Scripts.HotUpdate
 
         private static IEnumerator VersionUpdate()
         {
-            string uri = @"http://localhost/Json/remoteJson.json";
+            //string uri = @"http://localhost/Json/remoteJson.json";
+            string uri = @"http://assetbundlelhj.oss-accelerate.aliyuncs.com/Json/remoteJson.json";
             UnityWebRequest request = UnityWebRequest.Get(uri);
             yield return request.SendWebRequest();
-            float allFilesLength = 0;
+            allFilesLength = 0;
             if(request.isDone && string.IsNullOrEmpty(request.error))
             {
                 List<WebLoaderVO> webLoaderVOs = new List<WebLoaderVO>();
@@ -58,25 +61,27 @@ namespace Assets.Scripts.HotUpdate
                         webLoaderVOs.Add(vo);
                         vo.onComplete = SingleResLoaderFinish;
                         length = float.Parse(mD5Message.fileLength);
-                        allFilesLength += length;
+                        allFilesLength += (long)length;
                     }
                 }
                 if(webLoaderVOs.Count>0)
                 {
                     Debug.Log("开始尝试更新");
-                    GameStart.Instance.StartCoroutine(DownLoadBundleFiles(webLoaderVOs,AllResLoaderFinish));
+                    GameStart.Instance.StartCoroutine(DownLoadBundleFiles(webLoaderVOs,AllResLoaderFinish,(long down)=> { LoadPanel.Instance.SetDown(allFilesLength, down); }));
                 }
                 else
                 {
-                    _updateComplete?.Invoke(true);
+                    //_updateComplete?.Invoke(true);
+                    AllResLoaderFinish(true);
                 }
             }
         }
 
-        private static IEnumerator DownLoadBundleFiles(List<WebLoaderVO> webLoaderVOs, Action<bool> CallBack = null)
+        private static IEnumerator DownLoadBundleFiles(List<WebLoaderVO> webLoaderVOs, Action<bool> CallBack = null, Action<long> LoopCallBack = null)
         {
             int num = 0;
             string dir;
+            long downProcess = 0;
             for(int i=0;i< webLoaderVOs.Count;i++)
             {
                 WebLoaderVO webLoaderVO = webLoaderVOs[i];
@@ -90,7 +95,8 @@ namespace Assets.Scripts.HotUpdate
                 using (FileStream fs = new FileStream(webLoaderVO.tempFileName, FileMode.OpenOrCreate, FileAccess.Write))
                 {
                     long fileLength = fs.Length;
-                    if(fileLength<totalLength)
+                    downProcess += fileLength;
+                    if (fileLength<totalLength)
                     {
                         fs.Seek(fileLength, SeekOrigin.Begin);
 
@@ -104,20 +110,23 @@ namespace Assets.Scripts.HotUpdate
                             if(request.downloadHandler.data != null)
                             {
                                 webLoaderVO.TotalSize = request.downloadHandler.data.Length;
-                                yield return null;
                                 int length = request.downloadHandler.data.Length - index;
+                                downProcess += length;
                                 Debug.Log("从：" + index + " 写入长度：" + length);
                                 fs.Write(request.downloadHandler.data, index, length);
                                 index += length;
                                 fileLength += length;
                                 webLoaderVO.downFileLgth += request.downloadHandler.data.Length;
                                 Debug.Log("下载总量：" + webLoaderVO.downFileLgth);
+                                LoopCallBack?.Invoke(downProcess/1024);
+                                yield return null;
                             }
                         }
-                        num++;
                         fs.Close();
                         fs.Dispose();
                     }
+                    LoopCallBack?.Invoke(downProcess / 1024);
+                    num++;
                 }
                 webLoaderVO.Complete();
             }
@@ -159,6 +168,16 @@ namespace Assets.Scripts.HotUpdate
                     {
                         Debug.Log(path + "不存在文件");
                     }
+                    path = SystemConfig.PACK_OUT_RES_DOWN_TEMP_PATH + "/" + mD5Message.file;
+                    if (File.Exists(path))
+                    {
+                        File.Delete(path);
+                        Debug.Log(path + "删除");
+                    }
+                    else
+                    {
+                        Debug.Log(path + "不存在文件");
+                    }
                 }
             }
             ALog.Info("---------结束删除----------");
@@ -190,7 +209,6 @@ namespace Assets.Scripts.HotUpdate
                     Debug.Log("资源：" + webLoaderVO.fileName + "更新完毕");
                     CreateFile(webLoaderVO.fileName);
                     File.WriteAllBytes(webLoaderVO.fileName, File.ReadAllBytes(webLoaderVO.tempFileName));
-                    File.Delete(webLoaderVO.tempFileName);
                 }
                 else
                 {
@@ -202,7 +220,15 @@ namespace Assets.Scripts.HotUpdate
 
         public static void AllResLoaderFinish(bool success)
         {
-            if (!success)
+            if (failLoadVos.Count > 0)
+            {
+                for (int i = 0; i < failLoadVos.Count; i++)
+                {
+                    File.Delete(failLoadVos[i].tempFileName);
+                    Debug.Log("全部资源更新有误");
+                }
+            }
+            else if (!success)
             {
                 Debug.Log("全部资源更新有误");
             }
@@ -210,13 +236,13 @@ namespace Assets.Scripts.HotUpdate
             {
                 Debug.Log("全部资源更新完毕");
                 CreateFile(SystemConfig.JSON_PATH);
-                if(remoteFileMd5!=null)
+                if (remoteFileMd5 != null)
                 {
-                    for(int i=0;i<failLoadVos.Count;i++)
+                    for (int i = 0; i < failLoadVos.Count; i++)
                     {
-                        foreach(MD5Message mD5Message in remoteFileMd5.files)
+                        foreach (MD5Message mD5Message in remoteFileMd5.files)
                         {
-                            if(mD5Message.file == failLoadVos[i].file)
+                            if (mD5Message.file == failLoadVos[i].file)
                             {
                                 remoteFileMd5.files.Remove(mD5Message);
                                 break;
@@ -225,22 +251,25 @@ namespace Assets.Scripts.HotUpdate
                     }
                     File.WriteAllText(SystemConfig.JSON_PATH, JsonUtility.ToJson(remoteFileMd5));
                 }
+                DeleteFolder(SystemConfig.PACK_OUT_RES_DOWN_TEMP_PATH);
             }
             _updateComplete?.Invoke(success);
         }
 
-        private static void DeleteFolder(string dir)
+        public static void DeleteFolder(string dir)
         {
             foreach (string d in Directory.GetFileSystemEntries(dir))
             {
-                if (File.Exists(d))
+                string p = d;
+                p = p.Replace('\\', '/');
+                if (File.Exists(p))
                 {
                     try
                     {
                         FileInfo fi = new FileInfo(d);
                         if (fi.Attributes.ToString().IndexOf("ReadOnly") != -1)
                             fi.Attributes = FileAttributes.Normal;
-                        File.Delete(d);//直接删除其中的文件 
+                        File.Delete(p);//直接删除其中的文件 
                     }
                     catch
                     {
@@ -251,12 +280,12 @@ namespace Assets.Scripts.HotUpdate
                 {
                     try
                     {
-                        DirectoryInfo d1 = new DirectoryInfo(d);
-                        if (d1.GetFiles().Length != 0)
+                        string[] content = Directory.GetFiles(p, "*", SearchOption.AllDirectories);
+                        if (content.Length != 0)
                         {
-                            DeleteFolder(d1.FullName);////递归删除子文件夹
+                            DeleteFolder(p);////递归删除子文件夹
                         }
-                        Directory.Delete(d);
+                        Directory.Delete(p);
                     }
                     catch
                     {

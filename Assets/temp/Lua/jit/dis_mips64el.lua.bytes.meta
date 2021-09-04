@@ -1,7 +1,0 @@
-fileFormatVersion: 2
-guid: 33b0d21dfbe51754b97af4938ab3bdfa
-TextScriptImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: lua/jit/dis_mips64el.lua
-  assetBundleVariant: 

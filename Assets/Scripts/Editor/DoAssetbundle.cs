@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using System.IO;
 using Asset.Scripts.Util;
+using Assets.Scripts.HotUpdate;
 
 namespace Assets.Scripts.Editor
 {
@@ -33,9 +34,13 @@ namespace Assets.Scripts.Editor
             {
                 Directory.CreateDirectory(targetPath);
             }
+            else
+            {
+                AssetUpdate.DeleteFolder(targetPath);
+            }
 
             //打包资源
-            BuildPipeline.BuildAssetBundles(targetPath, BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows);
+            BuildPipeline.BuildAssetBundles(targetPath, BuildAssetBundleOptions.ChunkBasedCompression, BuildTarget.StandaloneWindows64);
 
             //刷新编辑器
             AssetDatabase.Refresh();
