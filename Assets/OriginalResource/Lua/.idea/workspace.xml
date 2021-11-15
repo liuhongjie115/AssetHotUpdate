@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:AssetHotUpdate" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="23688a6b-a2c7-465d-97c4-346f9540b37f" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1xWrTaYn0Uz0lX0M8jZszcb8MjT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="D:/project/aef/feature/client" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="lua.emmy.debugger" factoryName="Emmy Debugger(NEW)" nameIsGenerated="true">
+      <module name="Lua" />
+      <option name="TYPE" value="1" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="9966" />
+      <option name="PIPE" value="emmy" />
+      <option name="WIN_ARCH" value="1" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="23688a6b-a2c7-465d-97c4-346f9540b37f" name="Default Changelist" comment="" />
+      <created>1630481693029</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1630481693029</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="734" y="357" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630486547982">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="734" y="357" key="#com.intellij.execution.impl.EditConfigurationsDialog/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630486547982" />
+    <state width="628" height="466" key="DebuggerActiveHint" timestamp="1630592126648">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="628" height="466" key="DebuggerActiveHint/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630592126648" />
+    <state x="1060" y="457" key="FileChooserDialogImpl" timestamp="1630911943561">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="457" key="FileChooserDialogImpl/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630911943561" />
+    <state width="2500" height="484" key="GridCell.Tab.0.bottom" timestamp="1630644560033">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2500" height="484" key="GridCell.Tab.0.bottom/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630644560033" />
+    <state width="2500" height="484" key="GridCell.Tab.0.center" timestamp="1630644560033">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2500" height="484" key="GridCell.Tab.0.center/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630644560033" />
+    <state width="2500" height="484" key="GridCell.Tab.0.left" timestamp="1630644560033">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2500" height="484" key="GridCell.Tab.0.left/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630644560033" />
+    <state width="2500" height="484" key="GridCell.Tab.0.right" timestamp="1630644560033">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2500" height="484" key="GridCell.Tab.0.right/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630644560033" />
+    <state width="2500" height="484" key="GridCell.Tab.1.bottom" timestamp="1630644560033">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2500" height="484" key="GridCell.Tab.1.bottom/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630644560033" />
+    <state width="2500" height="484" key="GridCell.Tab.1.center" timestamp="1630644560033">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2500" height="484" key="GridCell.Tab.1.center/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630644560033" />
+    <state width="2500" height="484" key="GridCell.Tab.1.left" timestamp="1630644560033">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2500" height="484" key="GridCell.Tab.1.left/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630644560033" />
+    <state width="2500" height="484" key="GridCell.Tab.1.right" timestamp="1630644560033">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2500" height="484" key="GridCell.Tab.1.right/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630644560033" />
+    <state x="981" y="435" width="598" height="536" key="find.popup" timestamp="1630486287834">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="981" y="435" width="598" height="536" key="find.popup/2560.4.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1630486287834" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="lua.emmy.debugger">
+        <watch expression="Assets" language="Lua" />
+        <watch expression="_G" language="Lua" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
